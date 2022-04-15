@@ -5,23 +5,17 @@ A Demo Website to Place Order to Get your Printed Document or Photo with Admin p
 
 ## Order Page
 
-<img src="https://github.com/Sidmaz666/printing_order_services_portal/assets/portal.png"
-	width="100%"
->
+<img src="https://github.com/Sidmaz666/printing_order_services_portal/blob/main/assets/portal.png?raw=true" width="100%">
 
 ## Login Page
 
 
-<img src="https://github.com/Sidmaz666/printing_order_services_portal/assets/login.png"
-	width="100%"
->
+<img src="https://github.com/Sidmaz666/printing_order_services_portal/blob/main/assets/login.png?raw=true" width="100%">
 
 ## Admin Panel
 
 
-<img src="https://github.com/Sidmaz666/printing_order_services_portal/assets/admin.png"
-	width="100%"
->
+<img src="https://github.com/Sidmaz666/printing_order_services_portal/blob/main/assets/admin.png?raw=true"	width="100%">
 
 ## Note
 
