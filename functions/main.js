@@ -307,11 +307,16 @@ function verifyOrder(req,res){
 
  		let tokken = items[0].total_tokken + 1
 
+
 		 OrderModel.find({}, async (e,itm) => {
+		  
+
 		   const total_orders = itm.length + 1 == tokken ? true : false
 		    
 		   if(total_orders){
 
+
+		     tokken = itm.length + 1
 
 		    await TokkenModel.findOneAndUpdate({
 		    total_tokken : tokken
