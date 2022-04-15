@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"  charset="utf-8">
+  <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
+  <title>Home | Place Order</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <noscript>Enable JavaScript To Use the Site</noscript>
+  <script src="js/main.js" charset="utf-8" defer></script>
+  <script src="js/handleOrder.js" charset="utf-8" defer></script>
+  <script type="text/javascript" charset="utf-8" defer>
+    window.onload = () => {
+	  updateTokken()
+	}
+  </script>
+</head>
+<body 
+  class="
+  bg-black
+  w-full
+  h-screen
+  text-white
+  flex
+  flex-col
+  items-center
+  p-2
+  ">
+
+  	
+  <span
+      class="
+      text-2xl
+      md:text-3xl
+      whitespace-pre-line
+      text-center
+	     "
+    >
+    Welcome To Our Printing Services
+  </span>
+
+  <span
+      class="
+      mt-5
+      m-2
+      p-2
+      bg-gray-900
+      rounded-lg
+	     "
+    >
+    Completed Tokken : <b id="tokken-no" class="text-orange-500"></b>
+  </span>
+
+  <div 
+  class="
+  bg-gray-900
+  bg-opacity-90
+  p-8
+  pt-5
+  pl-10 pr-10
+  rounded-lg
+  mt-5
+  ">
+
+    <span
+	class="
+	text-xl
+	flex
+	flex-col
+	items-center
+	justify-center
+	       "
+      >
+      Place Order
+    <span
+	class="
+	text-xl
+	flex
+	justify-center
+	items-center
+	bg-white
+	h-1
+	mt-2
+	w-16
+	rounded-full
+	       "
+      >
+    </span>
+    </span>
+      <center>
+      <span id="err-msg" class="mt-2 text-xs hidden "></span>
+      </center>
+
+  <form enctype="multipart/form-data" id="order-form" name="order-form">
+
+	<span 
+	  class="
+	  flex
+	  flex-col">
+	<label class="p-2 pl-0">Name</label>
+	<input
+	class="
+	bg-[#26323880]
+	border-2
+	border-cyan-900
+	rounded-md
+	text-gray-200
+	pl-1
+	focus:bg-gray-900
+	focus:outline-none
+	"
+	type="text" 
+	name="name"
+	value="" 
+	id="name"
+	placeholder="Jhon Dee"
+	title="Please enter your full name"
+	required
+	autocomplete="off"
+	onchange="this.value.replaceAll(' ','').length < 3 ? showErr('err-name', 'Name Too Short',this) :  hideErr('err-name',this)  "
+	>
+      <span id="err-name" class="mt-2 text-xs hidden "></span>
+	</span>
+
+	<span 
+	  class="
+	  flex
+	  flex-col">
+	<label class="p-2 pl-0">Phone Number</label>
+	<input
+	class="
+	bg-[#26323880]
+	border-2
+	border-cyan-900
+	rounded-md
+	text-gray-200
+	focus:bg-gray-900
+	pl-1
+	focus:outline-none
+	"
+	type="number" 
+	name="phone-number"
+	value="" 
+	id="phone-number"
+	placeholder="+911234567890"
+	required
+	pattern="[6789][0-9]{9}"
+	title="Please enter valid phone number"
+	autocomplete="off"
+	onchange="this.value.replaceAll(' ','').length < 10 ? showErr('err-phone-number', 'Invalid Phone Number',this) :  hideErr('err-phone-number',this)  "
+	>
+	<span id="err-phone-number" class="mt-2 text-xs hidden "></span>
+	</span>
+
+	<span 
+	  class="
+	  flex
+	  flex-col">
+	<label class="p-2 pl-0">Pages/Photos/Copy</label>
+	<input
+	class="
+	bg-[#26323880]
+	border-2
+	border-cyan-900
+	rounded-md
+	text-gray-200
+	focus:bg-gray-900
+	pl-1
+	focus:outline-none
+	"
+	type="number" 
+	title="Please enter total files to be uploaded"
+	name="total-file"
+	value="1" 
+	id="total-file"
+	placeholder="1"
+	required
+	autocomplete="off"
+	onchange="Number(this.value) > 20 ? showErr('err-total-file', 'Limit is 20',this) :  hideErr('err-total-file',this)  "
+	/>
+	<span id="err-total-file" class="mt-2 text-xs hidden "></span>
+	</span>
+
+
+	<span 
+	  class="
+	  flex
+	  flex-col">
+	<label class="p-2 pl-0">Size</label>
+	<select
+	id="size"
+	name="size"
+	class="
+	bg-[#26323880]
+	border-2
+	border-cyan-900
+	rounded-md
+	text-gray-200
+	pl-1
+	focus:outline-none
+	focus:bg-gray-900
+	appearance-none
+	"
+
+	>
+		<option value="1" selected>A4 (Documents)</option>
+		<option value="2">Passport (Photo)</option>
+		<option value="3">Full/Original Size (Photo)</option>
+	</select>
+	</span>
+
+
+	<span 
+	  class="
+	  flex
+	  flex-col">
+	<label class="p-2 pl-0">Select Type</label>
+	<select
+	id="type"
+	name="type"
+	class="
+	bg-[#26323880]
+	border-2
+	border-cyan-900
+	rounded-md
+	text-gray-200
+	pl-1
+	focus:outline-none
+	focus:bg-gray-900
+	appearance-none
+	"
+	>
+		<option value="1" selected>Print Documents</option>
+		<option value="2">Print Photos</option>
+		<option value="3">Lamination</option>
+	</select>
+	</span>
+  	
+	<span 
+	  class="
+	  flex
+	  flex-col">
+	<label class="p-2 pl-0">Color</label>
+	<select
+	id="color"
+	name="color"
+	class="
+	bg-[#26323880]
+	border-2
+	border-cyan-900
+	rounded-md
+	text-gray-200
+	pl-1
+	focus:outline-none
+	focus:bg-gray-900
+	appearance-none
+	"
+	>
+		<option value="1" selected>B&W (Black & White)</option>
+		<option value="2">Colors</option>
+	</select>
+	</span>
+
+	
+	<span 
+	  class="
+	  flex
+	  flex-col">
+	<label class="p-2 pl-0">Upload File</label>
+	<label for="" class="
+	  bg-gray-900
+	  absolute
+	  mt-10
+	  w-[7.2rem]
+	  p-1
+	  border
+	  border-cyan-900
+	  rounded-l-md
+	  text-center
+	  cursor-pointer
+	  "
+		      onclick="document.getElementById('subFile').click()"
+		      required
+	  >Select File</label>
+	<input
+	id="subFile"
+	name="subFile"
+	type="file"
+	class="
+	cursor-pointer
+	bg-[#26323880]
+	border-2
+	border-cyan-900
+	rounded-md
+	text-gray-200
+	focus:outline-none
+	focus:bg-gray-900
+	appearance-none
+	"
+	multiple
+	required
+	/>
+	<span id="err-upload-file" class="mt-2 text-xs hidden "></span>
+	</span>
+
+
+	<button
+	    	type="submit"
+		class="p-2 text-lg ml-0 mt-5 font-semibold border rounded-md border-cyan-900 hover:bg-white hover:text-black"
+	  >Continue</button>
+
+
+
+  </form>
+  
+
+<a onclick="ToggleHelp()" href="#help" class="absolute top-0 right-0 p-2 text-white ">Help?</a>
+	
+</div>
+<b class="p-10 "></b>
+
+
+<div
+id="help"
+    class="
+	   hidden
+	   w-full
+	   h-screen
+	   fixed
+	   top-0
+	   bg-black
+	   "
+  >
+<a onclick="ToggleHelp()"  class="p-2 text-lg text-white cursor-pointer">< Go Back</a>
+<hr>
+    <div class="mt-2 p-1">
+      <span class="text-xl text-gray-200">
+        What is a Tokken?
+      </span>
+      <p class="bg-gray-900 bg-opacity-40 rounded-xl p-2">
+        A Tokken is a number corresponds to your order. 
+      </p>
+      
+      <span class="text-xl text-gray-200">
+        When will I know my order is done?
+      </span>
+      <p class="bg-gray-900 bg-opacity-40 rounded-xl p-2">
+        Users will be notified via text message on their given phone number once the order is ready. <br/>
+        If the Completed tokken is greater than your tokken number, it means your order is completed and you can visit the shop to pick it up.
+      </p>
+      
+      <span class="text-xl text-gray-200">
+        How a User will know his/her tokken number?
+      </span>
+      <p class="bg-gray-900 bg-opacity-40 rounded-xl p-2">
+        Once the Order has been placed, User will get a <b>SMS/Text Message</b> on their phone number along with the tokken number.
+      </p>
+      
+      
+      
+    </div>
+  <span class="absolute bg-gray-900 bg-opacity-50 w-full bottom-0 pl-10 p-1 text-xs">
+    Contact: 91891029372 
+    <br>
+    Address: Near Over Bridge
+    </span>
+</div> 
+
+
+
+</div>
+
+
+</body>
+</html>

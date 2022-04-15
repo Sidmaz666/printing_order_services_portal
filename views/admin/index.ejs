@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"  charset="utf-8">
+  <title>Order List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="js/updateOrder.js" defer></script>
+</head>
+<body class="bg-black text-white flex flex-col justify-center">
+    <span
+    class="
+	p-5
+	text-3xl
+	-white
+	ml-5
+      ">Received Orders</span>
+
+
+	
+    <div class="lg:p-5">
+
+      <table class="flex flex-col lg:flex-row justify-center w-full">
+
+	<tr class="hidden lg:table-auto lg:table-row bg-gray-900 ml-5 mr-5 space-x-2 rounded-md text-gray-400 text-xl font-semibold border-b-2 border-opacity-50 border-[#263238] ">
+	  <td class="text-center rounded-tl  bg-black bg-opacity-40 p-1">
+	    #
+	  </td>
+	  <td class="text-center bg-black bg-opacity-20 p-1">
+	    Customer Name
+	  </td>
+	  <td class="text-center bg-black bg-opacity-40 p-1">
+	    Phone Number
+	  </td>
+	  <td class="text-center bg-black bg-opacity-20 p-1">
+	    Size
+	  </td>
+	  <td class="text-center bg-black bg-opacity-40 p-1">
+	    Type
+	  </td>
+	  <td class="text-center bg-black bg-opacity-20 p-1">
+	    Color
+	  </td>
+	  <td class="text-center bg-black bg-opacity-40 p-1">
+	    Total Files
+	  </td>
+	  <td class="text-center bg-black bg-opacity-20 p-1">
+	    Download Links
+	  </td>
+	  <td class="text-center bg-black bg-opacity-40 p-1">
+	    Order Status
+	  </td>
+	  <td class="text-center bg-black bg-opacity-20 p-1">
+	    User Tokken
+	  </td>
+	  <td class="text-center bg-black bg-opacity-40 p-1">
+	    Time
+	  </td>
+	</tr>
+
+	<% if( locals.items ){
+	for(let x in items){
+    	const customer_name = items[x].user_info.customer_name
+    	const phone_number = items[x].user_info.phone_number
+    	const size = items[x].user_info.size
+    	const type = items[x].user_info.type
+    	const total_files = items[x].user_info.total_file
+    	const color = items[x].user_info.color == 1 ? 'Black & White' : 'Color(RGB)'
+    	const files = items[x].files
+    	const order_status = items[x].order_complete
+    	const user_tokken = items[x].user_tokken
+    	const order_time = items[x].created_time
+	const order_id = items[x]._id
+	%>
+
+	<tr class="flex flex-col lg:table lg:table-row  bg-gray-900 ml-5 mr-5 mb-5 lg:rounded-b-none rounded-md lg:border-b-2 border-[#263238] border-opacity-50 ">
+
+
+	  <td class="w-full lg:w-auto rounded lg:rounded-none bg-black bg-opacity-40">
+		<span class="flex space-x-3 items-center" >
+		  <span class="font-semibold rounded text-lg p-1 text-gray-400 lg:hidden">
+		# No.
+		  </span>
+		  <span class="text-xl font-bold text-gray-400 lg:p-1 ">
+		  <%= x %>
+		</span>
+		</span>
+	  </td>
+
+	  <td class="w-full lg:w-auto  bg-black bg-opacity-20">
+		<span class="flex space-x-3 items-center">
+		  <span class=" font-semibold text-lg p-1 text-gray-300 lg:hidden ">
+		Customer Name :	
+		  </span>
+		  <span class="text-xl font-bold text-cyan-100 ">
+		  <%= customer_name %>
+		</span>
+		</span>
+		</td>
+
+	  <td class="w-full lg:w-auto bg-black bg-opacity-40">
+		<span class="flex space-x-3 items-center">
+		  <span class=" font-semibold text-lg p-1 text-gray-400 lg:hidden ">
+			Phone Number :	
+		  </span>
+		  <span class="text-xl font-bold text-cyan-100">
+		  <%= phone_number %>
+		</span>
+		</span>
+		</td>
+
+	  <td class="w-full lg:w-auto bg-black bg-opacity-20">
+		<span class="flex space-x-3 items-center">
+		  <span class=" font-semibold text-lg p-1 text-gray-300 lg:hidden ">
+			Size :	
+		  </span>
+		  <span class="text-xl font-bold text-cyan-100">
+		  <%= size %>
+		</span>
+		</span>
+		</td>
+
+	  <td class="w-full lg:w-auto bg-black bg-opacity-40">
+		<span class="flex space-x-3 items-center">
+		  <span class=" font-semibold text-lg p-1 text-gray-400 lg:hidden ">
+		    Type :
+		  </span>
+		  <span class="text-xl font-bold text-cyan-100">
+		    <%= type %>
+		</span>
+		</span>
+		</td>
+
+	  <td class="w-full lg:w-auto bg-black bg-opacity-20">
+		<span class="flex space-x-3 items-center">
+		  <span class="lg:hidden font-semibold text-lg p-1 text-gray-300 ">
+		    Color :
+		  </span>
+		  <span class="text-xl font-bold text-cyan-100">
+		    <%= color %>
+		</span>
+		</span>
+		</td>
+
+	  <td class="w-full lg:w-auto bg-black bg-opacity-40">
+		<span class="flex space-x-3 items-center">
+		  <span class="lg:hidden font-semibold text-lg p-1 text-gray-400 ">
+		    Total Files :
+		  </span>
+		  <span class="text-xl font-bold text-cyan-100">
+		  <%= total_files %>
+		</span>
+		</span>
+		</td>  
+                
+	  <td class="w-full lg:w-auto bg-black bg-opacity-20">
+		<span class="flex space-x-3 items-center">
+		  <span class="lg:hidden font-semibold text-lg p-1 text-gray-400 ">
+		    Download Links :
+		  </span>
+		  <span class="text-xl font-bold text-cyan-100 flex space-y-2 flex-col items-center">
+		  <% for(let y=0; files.length > y ; y ++){ %>
+
+		    <a
+		      class="hover:text-green-500 bg-black pl-2 pr-2 rounded-xl hover:bg-opacity-100 bg-opacity-30 "
+		      href=/api/get_file?filename=<%= files[y] %> >
+
+		      Download_<%= y %>
+
+		    </a>
+
+		  <% } %>
+		</span>
+		</span>
+		</td>
+
+	  <td id="order_status"
+	    class="w-full bg-black lg:w-auto bg-opacity-40">
+		<span class="flex space-x-3 items-center">
+		  <span class="lg:hidden font-semibold text-lg p-1 text-gray-400 ">
+		    Order Status :
+		  </span>
+		  <span id="order-display" class="text-xl flex space-x-2 capitalize font-bold text-cyan-100">
+		    <span 
+		      <% if(order_status == false){ %>
+		      	class="text-red-500"
+			<% } else {  %>
+			class="text-green-500"
+			<% } %>
+		      >
+		  <%= order_status %>
+		    </span>
+		      <% if(order_status !== true){  %>
+		      <button
+			class=" hover:text-green-500 bg-black pl-2 pr-2 rounded-xl hover:bg-opacity-100 bg-opacity-30   "
+			data-id=<%= order_id %>
+			data-pno=<%= phone_number %>
+			data-tok=<%= user_tokken %>
+			class="text-purple-500"
+			>
+			Change
+		      </button>  
+		      <% } %>
+		</span>
+		</span>
+
+		</td>
+
+	  <td class="w-full lg:w-auto bg-black bg-opacity-20">
+		<span class="flex space-x-3 items-center">
+		  <span class="lg:hidden font-semibold text-lg p-1 text-gray-300 ">
+		    User Tokken :
+		  </span>
+		  <span class="text-xl font-bold text-cyan-100">
+			  <%= user_tokken %>
+		</span>
+		</span>
+		</td>
+
+
+	  <td class="w-full lg:w-auto bg-black bg-opacity-40">
+		<span class="flex space-x-3 items-center">
+		  <span class="lg:hiddden whitespace-nowrap font-semibold text-lg p-1 text-gray-400 ">
+		    Time :
+		  </span>
+		  <span class="text-lg font-bold text-cyan-100">
+			  <%= order_time %>
+		</span>
+		</span>
+		</td>
+
+	<% }} %>
+
+	</tr>
+
+
+      	
+      </table>
+
+    </div>
+
+
+
+
+
+  <a class="absolute top-0 right-0 p-2 mt-5 font-semibold text-gray-300 hover:text-cyan-500" title="Logout!" href="/admin/logout">Logout?</a>
+</body>
+</html>

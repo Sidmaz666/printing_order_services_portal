@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"  charset="utf-8">
+  <title>Admin Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="js/main.js" defer></script>
+  <script src="js/handleLogin.js" defer></script>
+  <noscript>Enable JavaScript To Use the Site</noscript>
+</head>
+<body 
+  class="
+  bg-black
+  w-full
+  h-screen
+  text-white
+  flex
+  flex-col
+  justify-center
+  items-center
+  p-2
+  ">
+
+  	
+    <div 
+  class="
+  bg-gray-900
+  bg-opacity-90
+  p-8
+  pt-5
+  pl-10 pr-10
+  rounded-lg
+  mt-5
+  ">
+
+    <span
+	class="
+	text-xl
+	flex
+	flex-col
+	items-center
+	justify-center
+	       "
+      >
+      Admin Login
+    <span
+	class="
+	text-xl
+	flex
+	justify-center
+	items-center
+	bg-white
+	h-1
+	mt-2
+	w-16
+	rounded-full
+	       "
+      >
+    </span>
+      <span id="err-msg" class="mt-2 text-xs hidden"></span>
+    </span>
+
+
+      <form  id="login-form">
+
+	<span 
+	  class="
+	  flex
+	  flex-col">
+	<label class="p-2 pl-0">Username</label>
+	<input
+	class="
+	bg-[#26323880]
+	border-2
+	border-cyan-900
+	rounded-md
+	text-gray-200
+	pl-1
+	focus:bg-gray-900
+	focus:outline-none
+	"
+	type="text" 
+	name="username"
+	value="" 
+	id="username"
+	placeholder="jhon_dee"
+	required
+	autocomplete="off"
+	onkeydown="checkPass(this.value.replaceAll(' ',''),3,true)"
+	>
+	</span>
+
+	<span 
+	  class="
+	  flex
+	  flex-col">
+	<label class="p-2 pl-0">Password</label>
+	<input
+	class="
+	bg-[#26323880]
+	border-2
+	rounded-md
+	border-cyan-900
+	text-gray-200
+	focus:bg-gray-900
+	pl-1
+	focus:outline-none
+	"
+	type="password" 
+	name="password"
+	value="" 
+	id="password"
+	placeholder="xrSdw!@gh6"
+	required
+	onkeydown="checkPass(this.value.replaceAll(' ',''),8,false)"
+	>
+	</span>
+
+
+	<center>
+	<button
+	    type="submit"
+		class="
+		p-2
+		text-lg
+		ml-0
+		mt-5
+		font-semibold
+		border
+		rounded-md
+		border-cyan-900
+		hover:bg-white hover:text-black"
+	  >
+	  Login
+	</button>
+
+	</center>
+
+
+
+
+
+  </form>
+  
+	
+</div>
+<b class="p-10 "></b>
+</body>
+</html>
+
